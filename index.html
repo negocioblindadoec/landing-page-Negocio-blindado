@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page — Negocio Blindado | Bernardo Jijón</title>
+  <meta name="description" content="El sistema paso a paso que traduce el laberinto legal ecuatoriano en acciones concretas para que operes con seguridad, sin abogados caros y sin jerga de bufete." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A84C;
+      --gold-dark:   #A8821E;
+      --gold-light:  #E8C870;
+      --navy:        #080B17;
+      --navy-2:      #0C1020;
+      --navy-3:      #111528;
+      --navy-4:      #161B32;
+      --border:      rgba(255,255,255,0.06);
+      --border-gold: rgba(201,168,76,0.22);
+      --text-dim:    rgba(255,255,255,0.45);
+      --text-muted:  rgba(255,255,255,0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeInUp   { from { opacity: 0; transform: translateY(24px); }  to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes float      { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes pulse      { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes shimmer    { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+    @keyframes scaleIn    { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    @keyframes glowPulse  {
+      0%,100% { box-shadow: 0 0 40px rgba(232,200,112,0.4), 0 0 80px rgba(201,168,76,0.2), inset 0 1px 0 rgba(255,255,255,0.25); }
+      50%     { box-shadow: 0 0 60px rgba(232,200,112,0.65), 0 0 120px rgba(201,168,76,0.35), inset 0 1px 0 rgba(255,255,255,0.3); }
+    }
+
+    /* ── SCROLL ANIMATION CLASSES ── */
+    .fade-in-up {
+      opacity: 0; transform: translateY(28px); filter: blur(8px);
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+    }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+    .fade-in-left {
+      opacity: 0; transform: translateX(-36px); filter: blur(6px);
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+    }
+    .fade-in-left.visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+
+    .fade-in-right {
+      opacity: 0; transform: translateX(36px); filter: blur(6px);
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+    }
+    .fade-in-right.visible { opacity: 1; transform: translateX(0); filter: blur(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.92); filter: blur(6px);
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); filter: blur(0); }
+
+    /* ── GOLD TEXT ── */
+    .gold-text {
+      background: linear-gradient(135deg, #E8C870 0%, #C9A84C 50%, #A8821E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #E8C870 0%, var(--gold) 40%, var(--gold-dark) 100%);
+      color: #0A0C16; font-weight: 900; font-size: 15.5px; letter-spacing: 0.02em;
+      padding: 18px 38px; border-radius: 999px; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15); cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 0 40px rgba(232,200,112,0.4), 0 0 80px rgba(201,168,76,0.2),
+                  0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+      font-family: inherit; position: relative; overflow: hidden;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .btn-primary:hover {
+      animation: none;
+      box-shadow: 0 0 60px rgba(232,200,112,0.6), 0 0 120px rgba(201,168,76,0.3),
+                  0 6px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+      transform: translateY(-3px); filter: brightness(1.08);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: rgba(255,255,255,0.7); font-weight: 600;
+      font-size: 14.5px; padding: 18px 28px; border-radius: 999px;
+      text-decoration: none; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.25s; font-family: inherit;
+    }
+    .btn-secondary:hover { border-color: var(--border-gold); color: #fff; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 100px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(30px, 4vw, 52px); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px;
+    }
+    .section-subtitle { font-size: 16px; color: var(--text-dim); line-height: 1.7; max-width: 520px; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--border-gold) 40%, var(--border-gold) 60%, transparent 100%);
+      max-width: 1140px; margin: 0 auto; opacity: 0.5;
+    }
+
+    /* ── TOP BANNER ── */
+    .top-banner {
+      background: linear-gradient(90deg, var(--navy-2) 0%, #0E1428 50%, var(--navy-2) 100%);
+      border-bottom: 1px solid var(--border-gold);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 11px 20px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .banner-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+      animation: pulse 2s ease-in-out infinite; flex-shrink: 0;
+    }
+
+    /* ── NAV ── */
+    .nav-wrap {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,11,23,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border); transition: border-color 0.3s;
+    }
+    .nav-wrap.scrolled { border-color: var(--border-gold); }
+    nav {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .nav-logo-text { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .nav-logo-text span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-socials { display: flex; align-items: center; gap: 8px; }
+    .social-link {
+      width: 32px; height: 32px; border-radius: 8px;
+      border: 1px solid rgba(201,168,76,0.2); background: rgba(201,168,76,0.05);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4); text-decoration: none; transition: all 0.2s;
+    }
+    .social-link:hover {
+      border-color: rgba(201,168,76,0.55); background: rgba(201,168,76,0.12);
+      color: var(--gold); box-shadow: 0 0 14px rgba(201,168,76,0.18);
+      transform: translateY(-2px);
+    }
+    .social-link svg { width: 14px; height: 14px; fill: currentColor; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, #E8C870 0%, var(--gold) 40%, var(--gold-dark) 100%);
+      color: #0A0C16; font-weight: 800; font-size: 12.5px; letter-spacing: 0.03em;
+      padding: 10px 20px; border-radius: 999px; text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 0 24px rgba(201,168,76,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.15); position: relative; overflow: hidden;
+    }
+    .nav-cta::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .nav-cta:hover {
+      box-shadow: 0 0 40px rgba(201,168,76,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+      transform: translateY(-1px); filter: brightness(1.06);
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.6); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 100px; position: relative; overflow: hidden;
+    }
+    .hero-bg-glow { position: absolute; inset: 0; pointer-events: none; }
+    .hero-bg-glow::before {
+      content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 900px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.09) 0%, rgba(201,168,76,0.03) 40%, transparent 70%);
+      filter: blur(40px);
+    }
+    .hero-grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 860px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.08); border: 1px solid var(--border-gold);
+      border-radius: 999px; padding: 6px 16px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeInDown 0.8s ease both, float 4s 1s ease-in-out infinite;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 8px var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 78px); font-weight: 900; line-height: 1.04;
+      letter-spacing: -0.04em; margin-bottom: 28px;
+      animation: fadeInUp 0.9s 0.15s ease both;
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--text-dim); max-width: 580px;
+      margin: 0 auto 44px; line-height: 1.7;
+      animation: fadeInUp 0.9s 0.3s ease both;
+    }
+    .hero-cta-group {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 14px; margin-bottom: 48px; animation: fadeInUp 0.9s 0.45s ease both;
+    }
+    .hero-trust {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 20px; animation: fadeInUp 0.9s 0.6s ease both;
+    }
+    .trust-item { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--text-muted); font-weight: 500; }
+    .trust-sep { color: var(--border); }
+
+    /* ── VSL ── */
+    .vsl-section { padding: 0 24px 100px; }
+    .vsl-inner { max-width: 840px; margin: 0 auto; position: relative; }
+    .vsl-wrapper {
+      position: relative; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 0 80px rgba(201,168,76,0.12), 0 24px 80px rgba(0,0,0,0.6);
+      background: var(--navy-2); aspect-ratio: 16/9;
+    }
+    .vsl-wrapper iframe { width: 100%; height: 100%; display: block; border: none; }
+    .vsl-glow {
+      position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 80px; background: rgba(201,168,76,0.15);
+      filter: blur(40px); border-radius: 50%; pointer-events: none;
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-section { background: var(--navy); }
+    .problem-header { margin-bottom: 52px; }
+    .problem-header .section-title { max-width: 640px; }
+    .problem-header p { font-size: 15px; color: var(--text-dim); line-height: 1.7; }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
+    .problem-col { display: flex; flex-direction: column; gap: 20px; }
+
+    .error-list { display: flex; flex-direction: column; gap: 10px; }
+    .error-item {
+      display: flex; align-items: center; gap: 14px;
+      background: rgba(255,60,60,0.05); border: 1px solid rgba(255,60,60,0.15);
+      border-radius: 10px; padding: 14px 18px; font-size: 14.5px;
+      color: rgba(255,255,255,0.75); font-weight: 500;
+      opacity: 0; transform: translateX(-20px); transition: opacity 0.5s, transform 0.5s;
+    }
+    .error-item.visible { opacity: 1; transform: translateX(0); }
+    .error-icon {
+      width: 22px; height: 22px; background: rgba(255,60,60,0.12);
+      border: 1px solid rgba(255,60,60,0.25); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; flex-shrink: 0; color: #ff6060; font-weight: 700;
+    }
+
+    .latent-box {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.03) 100%);
+      border: 1px solid var(--border-gold); border-radius: 12px; padding: 24px 28px; flex: 1;
+    }
+    .latent-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .latent-label::before { content: '⚠  '; }
+    .latent-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .latent-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+    .latent-question {
+      margin-top: 20px; font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.85);
+      border-top: 1px solid var(--border-gold); padding-top: 16px;
+    }
+    .latent-question strong { color: var(--gold); }
+
+    .chart-box { background: var(--navy-3); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .chart-title { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .bar-chart { display: flex; flex-direction: column; gap: 16px; }
+    .bar-label-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .bar-label { font-size: 13px; color: rgba(255,255,255,0.7); font-weight: 500; }
+    .bar-pct { font-size: 13px; font-weight: 700; color: var(--gold); }
+    .bar-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+    .bar-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 100%);
+      width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .cost-boxes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .cost-box { background: rgba(201,168,76,0.05); border: 1px solid var(--border-gold); border-radius: 10px; padding: 16px; }
+    .cost-box-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+    .cost-box-value { font-size: 14px; font-weight: 800; color: #ff9f9f; }
+
+    .system-quote { font-size: 14px; color: var(--text-dim); line-height: 1.7; border-left: 2px solid var(--gold); padding-left: 16px; font-style: italic; }
+
+    /* ── MODULES ── */
+    .modules-section { background: var(--navy-2); }
+    .modules-header { text-align: center; margin-bottom: 60px; }
+    .modules-header .section-subtitle { margin: 0 auto; }
+    .modules-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+      border-radius: 16px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .module-card {
+      background: var(--navy-3); padding: 40px 36px;
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: background 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .module-card:hover { background: var(--navy-4); border-color: var(--border-gold); z-index: 1; }
+    .module-card::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.06), transparent);
+      transform: skewX(-20deg); transition: left 0.6s ease;
+    }
+    .module-card:hover::before { left: 160%; }
+    .module-num { font-size: 44px; font-weight: 900; letter-spacing: -0.04em; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 16px; }
+    .module-card:hover .module-num { color: rgba(201,168,76,0.22); }
+    .module-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .module-name { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.2; }
+    .module-desc { font-size: 13.5px; color: var(--text-dim); line-height: 1.65; }
+    .module-feature { margin-top: 16px; font-size: 12px; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .module-feature::before { content: '→ '; }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--navy); }
+    .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 60px; align-items: start; }
+    .about-left { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border-gold); background: var(--navy-3);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-photo-glow {
+      position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 50px; background: rgba(201,168,76,0.25);
+      filter: blur(28px); border-radius: 50%; pointer-events: none;
+    }
+    .about-stats-side {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+      border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .about-stat { background: var(--navy-3); padding: 16px; text-align: center; }
+    .about-stat-value { font-size: 22px; font-weight: 900; color: var(--gold); letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+    .about-stat-label { font-size: 10px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+    .about-right { display: flex; flex-direction: column; gap: 0; }
+    .about-quote {
+      font-size: 19px; font-weight: 700; font-style: italic; color: rgba(255,255,255,0.85);
+      line-height: 1.45; margin-bottom: 24px; border-left: 3px solid var(--gold); padding-left: 20px;
+    }
+    .about-body { font-size: 15px; color: var(--text-dim); line-height: 1.8; margin-bottom: 32px; }
+    .about-body p + p { margin-top: 14px; }
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-item { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-year { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; min-width: 76px; padding-top: 2px; flex-shrink: 0; }
+    .timeline-role { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .timeline-org { font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--navy-2); }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .testimonial-card {
+      background: var(--navy-3); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: var(--border-gold); transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 40px rgba(201,168,76,0.08);
+    }
+    .stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .stars span { color: var(--gold); font-size: 15px; }
+    .testimonial-text { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 15px; color: #fff; flex-shrink: 0;
+    }
+    .author-name { font-size: 14px; font-weight: 700; }
+    .author-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .verified-badge { margin-left: auto; font-size: 10px; color: var(--gold); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ── PRICING ── */
+    .pricing-section { background: var(--navy); }
+    .pricing-header { text-align: center; margin-bottom: 16px; }
+    .pricing-context { text-align: center; font-size: 15px; color: var(--text-dim); max-width: 600px; margin: 0 auto 52px; line-height: 1.7; }
+    .pricing-card-wrap { max-width: 540px; margin: 0 auto; }
+    .pricing-card {
+      background: var(--navy-3); border: 1px solid var(--border-gold);
+      border-radius: 20px; overflow: hidden; box-shadow: 0 0 80px rgba(201,168,76,0.1);
+    }
+    .pricing-card-top {
+      background: linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 100%);
+      border-bottom: 1px solid var(--border-gold); padding: 36px 40px; text-align: center;
+    }
+    .pricing-label { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .pricing-name { font-size: 24px; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .pricing-price-row { display: flex; align-items: baseline; justify-content: center; gap: 6px; margin-bottom: 6px; }
+    .pricing-currency { font-size: 22px; font-weight: 700; color: var(--gold); }
+    .pricing-amount { font-size: 64px; font-weight: 900; color: var(--gold); letter-spacing: -0.04em; line-height: 1; }
+    .pricing-after { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+    .pricing-strike { font-size: 14px; color: var(--text-muted); text-decoration: line-through; }
+    .pricing-card-body { padding: 36px 40px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 14.5px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .feat-check {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(201,168,76,0.15); border: 1px solid var(--border-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: var(--gold); flex-shrink: 0; margin-top: 1px;
+    }
+    .pay-option {
+      background: linear-gradient(135deg, rgba(232,200,112,0.18) 0%, rgba(201,168,76,0.12) 100%);
+      border: 2px solid var(--gold); border-radius: 12px;
+      padding: 18px 20px; margin-bottom: 12px; display: flex; align-items: center;
+      gap: 14px; cursor: pointer; transition: all 0.28s;
+      text-decoration: none; color: inherit; position: relative; overflow: hidden;
+      box-shadow: 0 0 24px rgba(201,168,76,0.25), 0 4px 16px rgba(0,0,0,0.35);
+    }
+    .pay-option::before {
+      content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      transform: skewX(-20deg); transition: left 0.55s ease;
+    }
+    .pay-option:hover::before { left: 130%; }
+    .pay-option:hover {
+      border-color: var(--gold-light);
+      background: linear-gradient(135deg, rgba(232,200,112,0.28) 0%, rgba(201,168,76,0.20) 100%);
+      box-shadow: 0 0 40px rgba(232,200,112,0.45), 0 6px 24px rgba(0,0,0,0.45);
+      transform: translateY(-3px);
+    }
+    .pay-option-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(201,168,76,0.4);
+    }
+    .pay-option-label { font-size: 14.5px; font-weight: 800; color: #fff; }
+    .pay-option-sub { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 3px; }
+    .pay-option-arrow { margin-left: auto; color: var(--gold); font-size: 22px; font-weight: 700; text-shadow: 0 0 10px rgba(201,168,76,0.7); }
+    .guarantee-box {
+      background: rgba(201,168,76,0.05); border: 1px solid var(--border-gold);
+      border-radius: 12px; padding: 20px 24px; display: flex; gap: 14px;
+      align-items: flex-start; margin-top: 24px;
+    }
+    .guarantee-icon { font-size: 28px; flex-shrink: 0; }
+    .guarantee-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--gold); }
+    .guarantee-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+    .guarantee-email { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--navy-2); }
+    .faq-header { text-align: center; margin-bottom: 52px; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .faq-item {
+      background: var(--navy-3); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden; transition: border-color 0.25s;
+    }
+    .faq-item.open { border-color: var(--border-gold); }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 22px 24px; background: none; border: none; color: #fff;
+      font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
+      text-align: left; transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-item.open .faq-question { color: var(--gold); }
+    .faq-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1px solid var(--border-gold); display: flex; align-items: center;
+      justify-content: center; color: var(--gold); font-size: 15px;
+      flex-shrink: 0; transition: transform 0.3s; line-height: 1;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer-inner {
+      padding: 0 24px 24px; font-size: 14.5px; color: var(--text-dim);
+      line-height: 1.75; border-top: 1px solid var(--border);
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta-section { background: var(--navy); text-align: center; position: relative; overflow: hidden; padding: 100px 24px; }
+    .final-cta-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .final-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+    .final-cta-section h2 { font-size: clamp(32px,5vw,58px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.08; margin-bottom: 20px; }
+    .final-cta-section p { font-size: 16px; color: var(--text-dim); margin-bottom: 44px; line-height: 1.7; }
+    .final-pricing-note { margin-top: 20px; font-size: 13px; color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy-2); border-top: 1px solid var(--border); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 56px 32px 40px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .footer-logo-icon {
+      width: 30px; height: 30px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .footer-logo-text { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .footer-logo-text span { color: var(--gold); }
+    .footer-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .footer-contact { font-size: 12.5px; color: var(--text-muted); display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
+    .footer-contact a { color: var(--text-dim); text-decoration: none; }
+    .footer-contact a:hover { color: var(--gold); }
+    .footer-socials { display: flex; gap: 8px; flex-wrap: wrap; }
+    .footer-col-title { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 28px; border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--text-muted);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px); z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--navy-3); border: 1px solid var(--border-gold);
+      border-radius: 20px; max-width: 580px; width: 100%;
+      box-shadow: 0 0 80px rgba(201,168,76,0.15), 0 40px 80px rgba(0,0,0,0.6);
+      transform: translateY(20px) scale(0.97); transition: transform 0.3s; overflow: hidden;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 28px; border-bottom: 1px solid var(--border-gold);
+      background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, rgba(201,168,76,0.03) 100%);
+    }
+    .modal-title { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+    .modal-subtitle { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 1px solid var(--border-gold); background: rgba(201,168,76,0.08);
+      color: var(--text-dim); font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; flex-shrink: 0; line-height: 1;
+    }
+    .modal-close:hover { background: rgba(201,168,76,0.18); color: #fff; border-color: var(--gold); }
+    .modal-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+    .bank-card {
+      background: var(--navy-2); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .bank-card:hover { border-color: var(--border-gold); transform: translateY(-2px); }
+    .bank-card-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+    .bank-logo-pill {
+      display: flex; align-items: center; gap: 8px; padding: 6px 14px;
+      border-radius: 999px; font-size: 13px; font-weight: 800; letter-spacing: 0.02em;
+    }
+    .bank-logo-pill.pichincha { background: #C00; color: #fff; }
+    .bank-logo-pill.guayaquil { background: #003087; color: #fff; }
+    .bank-logo-pill svg { width: 16px; height: 16px; fill: currentColor; }
+    .bank-card-body { padding: 16px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .bank-field-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .bank-field-value { font-size: 14px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+    .bank-field-value.account { font-size: 16px; color: var(--gold); font-family: monospace; }
+    .copy-btn {
+      background: rgba(201,168,76,0.1); border: 1px solid var(--border-gold);
+      border-radius: 5px; color: var(--gold); font-size: 10px; font-weight: 700;
+      padding: 3px 8px; cursor: pointer; letter-spacing: 0.06em;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .copy-btn:hover { background: rgba(201,168,76,0.2); }
+    .copy-btn.copied { background: rgba(50,200,100,0.15); border-color: rgba(50,200,100,0.4); color: #4ade80; }
+    .modal-note {
+      background: rgba(201,168,76,0.06); border: 1px solid var(--border-gold);
+      border-radius: 10px; padding: 14px 18px; font-size: 13px;
+      color: var(--text-dim); line-height: 1.6; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .modal-note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .modal-footer { padding: 0 28px 24px; }
+    .modal-whatsapp {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(135deg, #25D366, #1aab55); color: #fff;
+      font-weight: 700; font-size: 14px; padding: 14px; border-radius: 12px;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .modal-whatsapp:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 260px 1fr; gap: 40px; }
+      .modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .about-left { position: relative; top: auto; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 72px 20px; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-left { position: relative; top: auto; }
+      .about-photo { aspect-ratio: 4/3; max-width: 340px; }
+      .modules-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .cost-boxes { grid-template-columns: 1fr; }
+      .bank-card-body { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: clamp(34px, 9vw, 52px); }
+      .pricing-card-top, .pricing-card-body { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <span class="banner-dot"></span>
+    Oferta de Lanzamiento · Ecuador · Precio sube a $200 al cerrar esta etapa
+    <span class="banner-dot"></span>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav-wrap" id="navWrap">
+    <nav>
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">🛡</div>
+        <span class="nav-logo-text">Negocio<span>Blindado</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#modulos">Módulos</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#resultados">Resultados</a></li>
+        <li><a href="#sobre-bernardo">Bernardo</a></li>
+        <li><a href="#faq">Preguntas</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="nav-socials">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/bernardo.jijon/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/yosoybernardojijon" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@BernardoJijon" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@bernardojijon" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://api.whatsapp.com/send?phone=593998476091&text=Env%C3%ADa%20tu%20comprobante" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+        <a href="#precios" class="nav-cta">Blindar mi negocio →</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Oferta de lanzamiento · Ecuador
+      </div>
+      <h1>
+        Blinda tu negocio<br>
+        antes de que el sistema<br>
+        lo <span class="gold-text">DESTRUYA</span>
+      </h1>
+      <p class="hero-sub">
+        El sistema paso a paso que traduce el laberinto legal ecuatoriano en acciones concretas —
+        para que operes con seguridad, sin abogados caros y sin jerga de bufete.
+      </p>
+      <div class="hero-cta-group">
+        <a href="#precios" class="btn-primary">Blinda tu negocio — $150 →</a>
+        <a href="#vsl" class="btn-secondary">▶&nbsp; Ver el video — 3 minutos</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span>🛡</span> Garantía 30 días</div>
+        <span class="trust-sep">·</span>
+        <div class="trust-item"><span>📅</span> Acceso 1 año</div>
+        <span class="trust-sep">·</span>
+        <div class="trust-item"><span>🇪🇨</span> 100% Ecuador</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VSL -->
+  <div class="vsl-section" id="vsl">
+    <div class="vsl-inner">
+      <div class="vsl-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+          title="Negocio Blindado — Video de presentación"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="vsl-glow"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Problema -->
+  <section class="problem-section" id="problema">
+    <div class="section-inner">
+
+      <div class="problem-header fade-in-up">
+        <span class="section-eyebrow">— El Problema</span>
+        <h2 class="section-title">Lo que nadie te explicó<br>antes de emprender</h2>
+        <p>Cada uno de estos errores no desapareció. El sistema los guardó con nombre, fecha y monto.</p>
+      </div>
+
+      <div class="problem-grid">
+
+        <!-- Columna izquierda -->
+        <div class="problem-col fade-in-left">
+          <div class="error-list" id="errorList">
+            <div class="error-item"><div class="error-icon">✗</div>Contrato mal firmado</div>
+            <div class="error-item"><div class="error-icon">✗</div>Empleado pagado con factura para evitar el IESS</div>
+            <div class="error-item"><div class="error-icon">✗</div>Permiso ignorado porque "por ahora no pasa nada"</div>
+            <div class="error-item"><div class="error-icon">✗</div>Marca sin registrar en el SENADI</div>
+            <div class="error-item"><div class="error-icon">✗</div>Deuda tributaria acumulada con intereses en el SRI</div>
+          </div>
+          <div class="latent-box">
+            <div class="latent-label">Pasivo Legal Latente</div>
+            <div class="latent-title">La deuda invisible del sistema</div>
+            <div class="latent-desc">Es la deuda que el sistema guarda con nombre, fecha y monto, esperando el momento equivocado para cobrarte.</div>
+            <div class="latent-question">La pregunta no es si te van a cobrar, sino <strong>¿CUÁNDO?</strong></div>
+          </div>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="problem-col fade-in-right" style="transition-delay:0.15s">
+          <div class="chart-box" id="barChart">
+            <div class="chart-title">% de emprendedores ecuatorianos con riesgo legal activo</div>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <div class="bar-label-row"><span class="bar-label">Contratos laborales</span><span class="bar-pct">88%</span></div>
+                <div class="bar-track"><div class="bar-fill" data-pct="88"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label-row"><span class="bar-label">Pagos sin contrato</span><span class="bar-pct">80%</span></div>
+                <div class="bar-track"><div class="bar-fill" data-pct="80"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label-row"><span class="bar-label">Obligaciones SRI</span><span class="bar-pct">74%</span></div>
+                <div class="bar-track"><div class="bar-fill" data-pct="74"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label-row"><span class="bar-label">Marca sin registrar</span><span class="bar-pct">65%</span></div>
+                <div class="bar-track"><div class="bar-fill" data-pct="65"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-label-row"><span class="bar-label">Permisos municipales</span><span class="bar-pct">58%</span></div>
+                <div class="bar-track"><div class="bar-fill" data-pct="58"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="cost-boxes">
+            <div class="cost-box">
+              <div class="cost-box-label">Despido mal procesado</div>
+              <div class="cost-box-value">$3.000–$15.000</div>
+            </div>
+            <div class="cost-box">
+              <div class="cost-box-label">Rebranding por marca</div>
+              <div class="cost-box-value">+$15.000</div>
+            </div>
+            <div class="cost-box">
+              <div class="cost-box-label">Deuda SRI + intereses</div>
+              <div class="cost-box-value">Se multiplica</div>
+            </div>
+          </div>
+          <div class="system-quote">
+            El sistema no está diseñado para que entiendas. Está diseñado para que sigas dependiendo de quienes sí entienden.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Módulos -->
+  <section class="modules-section" id="modulos">
+    <div class="section-inner">
+      <div class="modules-header fade-in-up">
+        <span class="section-eyebrow">— El Sistema</span>
+        <h2 class="section-title">Seis módulos. Un resultado:<br>un negocio que resiste.</h2>
+        <p class="section-subtitle">Cada módulo es una capa de protección. Juntos construyen el blindaje legal completo para tu negocio en Ecuador.</p>
+      </div>
+      <div class="modules-grid fade-in-up" style="transition-delay:0.1s">
+        <div class="module-card">
+          <div class="module-num">01</div>
+          <div class="module-tag">Radiografía</div>
+          <div class="module-name">Descubre tu riesgo real</div>
+          <div class="module-desc">Diagnóstico completo de cada pasivo latente: contratos, empleados, permisos, obligaciones tributarias. Sales con semáforo: rojo, amarillo, verde.</div>
+          <div class="module-feature">Identifica tu exposición antes de que el sistema lo haga por ti</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">02</div>
+          <div class="module-tag">Estructura</div>
+          <div class="module-name">La base legal correcta</div>
+          <div class="module-desc">Tipo de empresa adecuado con el Método REC. RUC con el régimen que le conviene a tu negocio. Patrimonio personal separado del empresarial.</div>
+          <div class="module-feature">Tu patrimonio personal no responde por las deudas del negocio</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">03</div>
+          <div class="module-tag">Equipo</div>
+          <div class="module-name">Contrata sin miedo</div>
+          <div class="module-desc">Contratos correctos + IESS desde el primer día + reglamento interno. Evita juicios que cuestan $3.000–$15.000 por caso mal manejado.</div>
+          <div class="module-feature">Ningún empleado puede llevarte a juicio con éxito</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">04</div>
+          <div class="module-tag">Activos</div>
+          <div class="module-name">Protege lo que construiste</div>
+          <div class="module-desc">Marca en SENADI paso a paso, sin intermediarios. Permisos LUAE, Bomberos, uso de suelo. Nadie cierra tu local por un papel que falta.</div>
+          <div class="module-feature">Tu marca registrada, tu local habilitado, tus activos seguros</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">05</div>
+          <div class="module-tag">Dinero</div>
+          <div class="module-name">Controla el flujo</div>
+          <div class="module-desc">Sistema de los 3 Cubos: operación, seguridad, reinversión. Punto de equilibrio y burn rate real. Sabes cuánto tiempo tienes antes de quedarte en cero.</div>
+          <div class="module-feature">Nunca más operarás sin saber si tu negocio es viable</div>
+        </div>
+        <div class="module-card">
+          <div class="module-num">06</div>
+          <div class="module-tag">Paracaídas</div>
+          <div class="module-name">Si algo falla, sigues de pie</div>
+          <div class="module-desc">Distingues falta de liquidez de quiebra real. Proteges tu patrimonio personal. Si el negocio debe cerrarse, lo haces sin deudas fantasma ni juicios futuros.</div>
+          <div class="module-feature">El negocio puede morir. Tú no puedes morir con él.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- About -->
+  <section class="about-section" id="sobre-bernardo">
+    <div class="section-inner">
+      <div class="about-grid">
+
+        <div class="about-left fade-in-left">
+          <div class="about-photo">
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&fit=crop&crop=face"
+              alt="Bernardo Jijón — Abogado Empresarial Ecuador"
+            />
+            <div class="about-photo-glow"></div>
+          </div>
+          <div class="about-stats-side">
+            <div class="about-stat">
+              <div class="about-stat-value">6+</div>
+              <div class="about-stat-label">Años Laboral</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">5+</div>
+              <div class="about-stat-label">Años Tributario</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">4+</div>
+              <div class="about-stat-label">Anticorrupción</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">3+</div>
+              <div class="about-stat-label">Cooperación Int'l</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-right fade-in-right" style="transition-delay:0.15s">
+          <span class="section-eyebrow">— Quién lo Enseña</span>
+          <div style="margin-bottom:4px;">
+            <h2 class="section-title" style="margin-bottom:4px;">Bernardo Jijón</h2>
+            <p style="font-size:14px;color:var(--gold);font-weight:600;margin-bottom:24px;">Abogado · Asesor Empresarial</p>
+          </div>
+
+          <div class="about-quote">
+            "Lo peor fue darme cuenta de que era abogado. Y aun así no lo vi venir."
+          </div>
+
+          <div class="about-body">
+            <p>Me gradué de la Universidad de las Américas con especialización en asesoría empresarial. Pero el conocimiento teórico no me preparó para lo que pasó después.</p>
+            <p>Decidí emprender. Fue mi primer negocio. Y por desconocimiento del sistema —a pesar de ser abogado— cometí errores que me costaron miles de dólares. Mi negocio fracasó.</p>
+            <p>Ese fracaso fue mi mejor inversión. Aprendí el mapa legal que nadie te da cuando emprendes. La experiencia de años, que me costó miles de dólares, la resumo en estos 6 módulos para que a los pequeños y medianos emprendedores no les pase lo mismo que a mí.</p>
+            <p>Hoy, esa experiencia se traduce en <strong style="color:var(--gold)">Negocio Blindado</strong>: el sistema que protege tu negocio antes de que el sistema lo destruya.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-year">2019–hoy</span>
+              <div>
+                <div class="timeline-role">Gerente — RLF Law Firm</div>
+                <div class="timeline-org">Lideró equipo asesorando compañías nacionales y extranjeras.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">Activo</span>
+              <div>
+                <div class="timeline-role">Abogado — Comisión Nacional Anticorrupción</div>
+                <div class="timeline-org">Investigaciones de delitos financieros de alto impacto.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">2021</span>
+              <div>
+                <div class="timeline-role">Vicepresidente fundador — FLAC</div>
+                <div class="timeline-org">Fundación Lucha Anticorrupción para fortalecer transparencia pública.</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">Varios</span>
+              <div>
+                <div class="timeline-role">Consultor — Organismos Internacionales</div>
+                <div class="timeline-org">Proyectos de cooperación para fortalecer la democracia en Ecuador.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Testimonios -->
+  <section class="testimonials-section" id="resultados">
+    <div class="section-inner">
+      <div class="testimonials-header fade-in-up">
+        <span class="section-eyebrow">— Resultados Reales</span>
+        <h2 class="section-title">Emprendedores que dejaron<br>de operar a ciegas.</h2>
+      </div>
+      <div class="testimonials-grid fade-in-up" style="transition-delay:0.1s">
+        <div class="testimonial-card">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"Tenía tres personas trabajando conmigo con factura. Bernardo me mostró el riesgo real. Ahora todos están en IESS y duermo tranquilo."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">C</div>
+            <div>
+              <div class="author-name">Carlos M.</div>
+              <div class="author-role">Agencia de diseño, Quito</div>
+            </div>
+            <div class="verified-badge">✓ Verificado</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-text">"Pensé que registrar la marca era caro y complicado. Lo hice yo mismo siguiendo el módulo. Ahora nadie puede quitarme el nombre."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Andrea V.</div>
+              <div class="author-role">Emprendedora de alimentos, Guayaquil</div>
+            </div>
+            <div class="verified-badge">✓ Verificada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Precios -->
+  <section class="pricing-section" id="precios">
+    <div class="section-inner">
+      <div class="pricing-header fade-in-up">
+        <span class="section-eyebrow">— La Oferta</span>
+        <h2 class="section-title">Lo que cuesta proteger<br>tu negocio.</h2>
+      </div>
+      <p class="pricing-context fade-in-up">
+        Un solo juicio laboral mal manejado en Ecuador: <strong>$3.000–$15.000</strong>.
+        Un rebranding por marca sin registrar: <strong>+$15.000</strong>.
+        Una multa del SRI: <strong>se multiplica</strong>.
+        Frente a eso, $150 no es un gasto — es el seguro más barato que puedes contratar.
+      </p>
+      <div class="pricing-card-wrap scale-in" style="transition-delay:0.1s">
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <div class="pricing-label">Acceso Esencial</div>
+            <div class="pricing-name">Negocio Blindado</div>
+            <div class="pricing-price-row">
+              <span class="pricing-currency">$</span>
+              <span class="pricing-amount">150</span>
+            </div>
+            <div class="pricing-after">Precio de lanzamiento</div>
+            <div class="pricing-strike">$200 después</div>
+          </div>
+          <div class="pricing-card-body">
+            <ul class="pricing-features">
+              <li><div class="feat-check">✓</div>Acceso completo a los 6 módulos</li>
+              <li><div class="feat-check">✓</div>12 herramientas: checklists, plantillas, calculadoras</li>
+              <li><div class="feat-check">✓</div>Acceso por 1 año + actualizaciones incluidas</li>
+              <li><div class="feat-check">✓</div>Comunidad privada exclusiva + Bernardo responde</li>
+            </ul>
+
+            <a href="https://whop.com/negocioblindado/negocio-blindado/" target="_blank" rel="noopener" class="pay-option">
+              <div class="pay-option-icon">💳</div>
+              <div>
+                <div class="pay-option-label">Pagar con tarjeta de crédito o débito</div>
+                <div class="pay-option-sub">Visa · Mastercard · American Express · Acceso inmediato</div>
+              </div>
+              <span class="pay-option-arrow">→</span>
+            </a>
+
+            <button class="pay-option" id="openTransferModal" style="width:100%;">
+              <div class="pay-option-icon">🏦</div>
+              <div>
+                <div class="pay-option-label">Pagar por transferencia bancaria</div>
+                <div class="pay-option-sub">Acceso activado en menos de 48 horas hábiles</div>
+              </div>
+              <span class="pay-option-arrow">→</span>
+            </button>
+
+            <div class="guarantee-box">
+              <div class="guarantee-icon">🛡️</div>
+              <div>
+                <div class="guarantee-title">Garantía de 30 días — el riesgo es mío</div>
+                <div class="guarantee-text">Entra, aplica los 6 módulos. Si en 30 días sientes que no valió lo que pagaste, te devuelvo el dinero completo.</div>
+                <div class="guarantee-email">Para consultas: info@bernardojijon.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="section-inner">
+      <div class="faq-header fade-in-up">
+        <span class="section-eyebrow">— Últimas Dudas</span>
+        <h2 class="section-title">Antes de decidir</h2>
+      </div>
+      <div class="faq-list fade-in-up" style="transition-delay:0.1s">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Para quién es Negocio Blindado?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Para emprendedores y dueños de negocios en Ecuador que ya operan o están por comenzar. Si tienes empleados, clientes, una marca o activos que proteger — esto es para ti. No necesitas conocimientos legales previos.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Esto realmente puede evitar que mi negocio fracase?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Puede evitar que fracase por razones legales — que son muchas más de lo que imaginas. Contratos mal firmados, empleados sin IESS, marcas sin registrar, permisos ignorados: cada uno es una bomba de tiempo. Este sistema los detecta y los desactiva antes de que exploten.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Mi negocio ya funciona bien ¿igual necesito esto?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Especialmente si funciona bien. Los negocios que crecen acumulan más exposición legal: más empleados, más contratos, más activos. Cuanto antes apliques el sistema, más vas a proteger.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Por qué comprar esto si puedo buscar información gratis en internet?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Puedes encontrar información general, sí. Pero no específica para el sistema legal ecuatoriano, no en el orden correcto, y no con las herramientas prácticas. La diferencia entre información genérica y un sistema aplicable es exactamente lo que este curso cierra.</div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Esto reemplaza contratar a un abogado?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Para el 80% de lo que necesitas como emprendedor pequeño o mediano: sí. Para casos complejos o litigios avanzados, siempre necesitarás un abogado. Pero este sistema te evita llegar a esa situación.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Final CTA -->
+  <section class="final-cta-section">
+    <div class="final-cta-bg"></div>
+    <div class="final-cta-inner fade-in-up">
+      <span class="section-eyebrow">— Tu Momento es Ahora</span>
+      <h2>El sistema no avisa<br>cuando decide cobrar.<br>Tú sí puedes prepararte.</h2>
+      <p>Negocio Blindado existe para que eso no te pase a ti. El mapa que nadie te dio cuando emprendiste — disponible hoy.</p>
+      <a href="#precios" class="btn-primary" style="font-size:16px;padding:20px 48px;">
+        Blinda mi negocio ahora →
+      </a>
+      <p class="final-pricing-note">Precio de lanzamiento: $150 · Sube a $200 al cerrar esta etapa · Garantía 30 días</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">🛡</div>
+            <span class="footer-logo-text">Negocio<span>Blindado</span></span>
+          </div>
+          <p class="footer-desc">Abogado empresarial ecuatoriano. El sistema que traduce el laberinto legal en pasos concretos para emprendedores en Ecuador.</p>
+          <div class="footer-contact">
+            <span>Bernardo Jijón</span>
+            <a href="mailto:info@bernardojijon.com">info@bernardojijon.com</a>
+            <a href="tel:+593998476091">099 847 6091</a>
+          </div>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/bernardo.jijon/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/yosoybernardojijon" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@BernardoJijon" target="_blank" rel="noopener" class="social-link" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@bernardojijon" target="_blank" rel="noopener" class="social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=593998476091&text=Env%C3%ADa%20tu%20comprobante" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Negocio Blindado</div>
+          <ul class="footer-links">
+            <li><a href="#modulos">Módulos</a></li>
+            <li><a href="#precios">Precios</a></li>
+            <li><a href="#resultados">Resultados</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Bernardo</div>
+          <ul class="footer-links">
+            <li><a href="#sobre-bernardo">Sobre Bernardo</a></li>
+            <li><a href="#sobre-bernardo">Trayectoria</a></li>
+            <li><a href="#">Libertad Ecuador</a></li>
+            <li><a href="#">bernardojijon.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Recursos</div>
+          <ul class="footer-links">
+            <li><a href="https://api.whatsapp.com/send?phone=593998476091" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Bernardo Jijón · bernardojijon.com · Ecuador</span>
+        <span>info@bernardojijon.com · 099 847 6091</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Transferencia Bancaria -->
+  <div class="modal-overlay" id="transferModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Datos para transferencia</div>
+          <div class="modal-subtitle">Elige tu banco y realiza el pago</div>
+        </div>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Banco Pichincha -->
+        <div class="bank-card">
+          <div class="bank-card-header">
+            <div class="bank-logo-pill pichincha">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+              Banco Pichincha
+            </div>
+          </div>
+          <div class="bank-card-body">
+            <div class="bank-field">
+              <div class="bank-field-label">Tipo de Cuenta</div>
+              <div class="bank-field-value">Cuenta de Ahorros</div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Número de Cuenta</div>
+              <div class="bank-field-value account">
+                2207013727
+                <button class="copy-btn" onclick="copyText('2207013727', this)">COPIAR</button>
+              </div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Titular</div>
+              <div class="bank-field-value">Bernardo Jijón</div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Cédula / RUC</div>
+              <div class="bank-field-value account">
+                1716822430
+                <button class="copy-btn" onclick="copyText('1716822430', this)">COPIAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banco de Guayaquil -->
+        <div class="bank-card">
+          <div class="bank-card-header">
+            <div class="bank-logo-pill guayaquil">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              Banco de Guayaquil
+            </div>
+          </div>
+          <div class="bank-card-body">
+            <div class="bank-field">
+              <div class="bank-field-label">Tipo de Cuenta</div>
+              <div class="bank-field-value">Cuenta de Ahorros</div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Número de Cuenta</div>
+              <div class="bank-field-value account">
+                26710418
+                <button class="copy-btn" onclick="copyText('26710418', this)">COPIAR</button>
+              </div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Titular</div>
+              <div class="bank-field-value">Bernardo Jijón</div>
+            </div>
+            <div class="bank-field">
+              <div class="bank-field-label">Cédula / RUC</div>
+              <div class="bank-field-value account">
+                1716822430
+                <button class="copy-btn" onclick="copyText('1716822430', this)">COPIAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-note">
+          <span class="modal-note-icon">ℹ️</span>
+          <span>Una vez realizada la transferencia, envía el comprobante a <strong>info@bernardojijon.com</strong> o al WhatsApp <strong>099 847 6091</strong>. Tu acceso se activa en menos de 48 horas hábiles.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://api.whatsapp.com/send?phone=593998476091&text=Env%C3%ADa%20tu%20comprobante" target="_blank" rel="noopener" class="modal-whatsapp">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar comprobante por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* NAV scroll */
+    window.addEventListener('scroll', () => {
+      document.getElementById('navWrap').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* FAQ accordion */
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    /* Modal transferencia */
+    const modal = document.getElementById('transferModal');
+    document.getElementById('openTransferModal').addEventListener('click', () => {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('closeModal').addEventListener('click', () => {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    modal.addEventListener('click', e => {
+      if (e.target === modal) { modal.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { modal.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+
+    /* Copiar al portapapeles */
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ COPIADO';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'COPIAR'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+
+    /* Scroll animations */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in')
+      .forEach(el => io.observe(el));
+
+    /* Bar chart */
+    const barObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.bar-fill').forEach((fill, i) => {
+          setTimeout(() => { fill.style.width = fill.dataset.pct + '%'; }, i * 130);
+        });
+        barObs.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    const chart = document.getElementById('barChart');
+    if (chart) barObs.observe(chart);
+
+    /* Error list stagger */
+    const errorObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.error-item').forEach((item, i) => {
+          setTimeout(() => item.classList.add('visible'), i * 160);
+        });
+        errorObs.unobserve(e.target);
+      });
+    }, { threshold: 0.2 });
+    const errorList = document.getElementById('errorList');
+    if (errorList) errorObs.observe(errorList);
+  </script>
+
+</body>
+</html>
