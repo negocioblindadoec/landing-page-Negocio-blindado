@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landing Page — Negocio Blindado | Bernardo Jijón</title>
+  <title>Negocio Blindado | Bernardo Jijón</title>
   <meta name="description" content="El sistema paso a paso que traduce el laberinto legal ecuatoriano en acciones concretas para que operes con seguridad, sin abogados caros y sin jerga de bufete." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
@@ -211,8 +211,8 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 120px 24px 100px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 40px 24px 28px; position: relative; overflow: hidden;
     }
     .hero-bg-glow { position: absolute; inset: 0; pointer-events: none; }
     .hero-bg-glow::before {
@@ -230,13 +230,13 @@
       mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
       -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
     }
-    .hero-inner { position: relative; z-index: 2; max-width: 860px; }
+    .hero-inner { position: relative; z-index: 2; max-width: 1000px; width: 100%; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(201,168,76,0.08); border: 1px solid var(--border-gold);
       border-radius: 999px; padding: 6px 16px; font-size: 12px; font-weight: 600;
       letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase;
-      margin-bottom: 32px;
+      margin-bottom: 12px;
       animation: fadeInDown 0.8s ease both, float 4s 1s ease-in-out infinite;
     }
     .hero-badge-dot {
@@ -246,17 +246,17 @@
     }
     .hero h1 {
       font-size: clamp(40px, 6vw, 78px); font-weight: 900; line-height: 1.04;
-      letter-spacing: -0.04em; margin-bottom: 28px;
+      letter-spacing: -0.04em; margin-bottom: 10px;
       animation: fadeInUp 0.9s 0.15s ease both;
     }
     .hero-sub {
-      font-size: 17px; color: var(--text-dim); max-width: 580px;
-      margin: 0 auto 44px; line-height: 1.7;
+      font-size: 17px; color: var(--text-dim); max-width: 700px;
+      margin: 0 auto 14px; line-height: 1.6;
       animation: fadeInUp 0.9s 0.3s ease both;
     }
     .hero-cta-group {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
-      gap: 14px; margin-bottom: 48px; animation: fadeInUp 0.9s 0.45s ease both;
+      gap: 14px; margin-bottom: 14px; animation: fadeInUp 0.9s 0.45s ease both;
     }
     .hero-trust {
       display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -735,18 +735,26 @@
         <span class="hero-badge-dot"></span>
         Oferta de lanzamiento · Ecuador
       </div>
-      <h1>
-        Blinda tu negocio<br>
-        antes de que el sistema<br>
-        lo <span class="gold-text">DESTRUYA</span>
-      </h1>
+      <h1>Opera tu negocio sin miedo al SRI, al IESS ni a demandas <span class="gold-text">LABORALES</span></h1>
       <p class="hero-sub">
-        El sistema paso a paso que traduce el laberinto legal ecuatoriano en acciones concretas —
+        El sistema paso a paso que traduce el laberinto legal ecuatoriano en acciones concretas
         para que operes con seguridad, sin abogados caros y sin jerga de bufete.
       </p>
+
+      <!-- VSL -->
+      <div style="width:100%;max-width:600px;margin:0 auto 14px;border-radius:14px;overflow:hidden;border:2px solid var(--border-gold);box-shadow:0 0 50px rgba(201,168,76,0.15);position:relative;">
+        <div class="vsl-wrapper" style="border-radius:0;">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+            title="Negocio Blindado, Video de presentación"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
       <div class="hero-cta-group">
-        <a href="#precios" class="btn-primary">Blinda tu negocio — $150 →</a>
-        <a href="#vsl" class="btn-secondary">▶&nbsp; Ver el video — 3 minutos</a>
+        <a href="#precios" class="btn-primary">Blinda tu negocio por $150 →</a>
       </div>
       <div class="hero-trust">
         <div class="trust-item"><span>🛡</span> Garantía 30 días</div>
@@ -758,21 +766,6 @@
     </div>
   </div>
 
-  <!-- VSL -->
-  <div class="vsl-section" id="vsl">
-    <div class="vsl-inner">
-      <div class="vsl-wrapper">
-        <iframe
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-          title="Negocio Blindado — Video de presentación"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="vsl-glow"></div>
-    </div>
-  </div>
-
   <div class="divider"></div>
 
   <!-- Problema -->
@@ -780,7 +773,7 @@
     <div class="section-inner">
 
       <div class="problem-header fade-in-up">
-        <span class="section-eyebrow">— El Problema</span>
+        <span class="section-eyebrow">El Problema</span>
         <h2 class="section-title">Lo que nadie te explicó<br>antes de emprender</h2>
         <p>Cada uno de estos errores no desapareció. El sistema los guardó con nombre, fecha y monto.</p>
       </div>
@@ -860,7 +853,7 @@
   <section class="modules-section" id="modulos">
     <div class="section-inner">
       <div class="modules-header fade-in-up">
-        <span class="section-eyebrow">— El Sistema</span>
+        <span class="section-eyebrow">El Sistema</span>
         <h2 class="section-title">Seis módulos. Un resultado:<br>un negocio que resiste.</h2>
         <p class="section-subtitle">Cada módulo es una capa de protección. Juntos construyen el blindaje legal completo para tu negocio en Ecuador.</p>
       </div>
@@ -922,7 +915,7 @@
           <div class="about-photo">
             <img
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&fit=crop&crop=face"
-              alt="Bernardo Jijón — Abogado Empresarial Ecuador"
+              alt="Bernardo Jijón, Abogado Empresarial Ecuador"
             />
             <div class="about-photo-glow"></div>
           </div>
@@ -947,7 +940,7 @@
         </div>
 
         <div class="about-right fade-in-right" style="transition-delay:0.15s">
-          <span class="section-eyebrow">— Quién lo Enseña</span>
+          <span class="section-eyebrow">Quién lo Enseña</span>
           <div style="margin-bottom:4px;">
             <h2 class="section-title" style="margin-bottom:4px;">Bernardo Jijón</h2>
             <p style="font-size:14px;color:var(--gold);font-weight:600;margin-bottom:24px;">Abogado · Asesor Empresarial</p>
@@ -959,7 +952,7 @@
 
           <div class="about-body">
             <p>Me gradué de la Universidad de las Américas con especialización en asesoría empresarial. Pero el conocimiento teórico no me preparó para lo que pasó después.</p>
-            <p>Decidí emprender. Fue mi primer negocio. Y por desconocimiento del sistema —a pesar de ser abogado— cometí errores que me costaron miles de dólares. Mi negocio fracasó.</p>
+            <p>Decidí emprender. Fue mi primer negocio. Y por desconocimiento del sistema, a pesar de ser abogado, cometí errores que me costaron miles de dólares. Mi negocio fracasó.</p>
             <p>Ese fracaso fue mi mejor inversión. Aprendí el mapa legal que nadie te da cuando emprendes. La experiencia de años, que me costó miles de dólares, la resumo en estos 6 módulos para que a los pequeños y medianos emprendedores no les pase lo mismo que a mí.</p>
             <p>Hoy, esa experiencia se traduce en <strong style="color:var(--gold)">Negocio Blindado</strong>: el sistema que protege tu negocio antes de que el sistema lo destruya.</p>
           </div>
@@ -968,28 +961,28 @@
             <div class="timeline-item">
               <span class="timeline-year">2019–hoy</span>
               <div>
-                <div class="timeline-role">Gerente — RLF Law Firm</div>
+                <div class="timeline-role">Gerente, RLF Law Firm</div>
                 <div class="timeline-org">Lideró equipo asesorando compañías nacionales y extranjeras.</div>
               </div>
             </div>
             <div class="timeline-item">
               <span class="timeline-year">Activo</span>
               <div>
-                <div class="timeline-role">Abogado — Comisión Nacional Anticorrupción</div>
+                <div class="timeline-role">Abogado, Comisión Nacional Anticorrupción</div>
                 <div class="timeline-org">Investigaciones de delitos financieros de alto impacto.</div>
               </div>
             </div>
             <div class="timeline-item">
               <span class="timeline-year">2021</span>
               <div>
-                <div class="timeline-role">Vicepresidente fundador — FLAC</div>
+                <div class="timeline-role">Vicepresidente fundador, FLAC</div>
                 <div class="timeline-org">Fundación Lucha Anticorrupción para fortalecer transparencia pública.</div>
               </div>
             </div>
             <div class="timeline-item">
               <span class="timeline-year">Varios</span>
               <div>
-                <div class="timeline-role">Consultor — Organismos Internacionales</div>
+                <div class="timeline-role">Consultor, Organismos Internacionales</div>
                 <div class="timeline-org">Proyectos de cooperación para fortalecer la democracia en Ecuador.</div>
               </div>
             </div>
@@ -1006,7 +999,7 @@
   <section class="testimonials-section" id="resultados">
     <div class="section-inner">
       <div class="testimonials-header fade-in-up">
-        <span class="section-eyebrow">— Resultados Reales</span>
+        <span class="section-eyebrow">Resultados Reales</span>
         <h2 class="section-title">Emprendedores que dejaron<br>de operar a ciegas.</h2>
       </div>
       <div class="testimonials-grid fade-in-up" style="transition-delay:0.1s">
@@ -1044,14 +1037,14 @@
   <section class="pricing-section" id="precios">
     <div class="section-inner">
       <div class="pricing-header fade-in-up">
-        <span class="section-eyebrow">— La Oferta</span>
+        <span class="section-eyebrow">La Oferta</span>
         <h2 class="section-title">Lo que cuesta proteger<br>tu negocio.</h2>
       </div>
       <p class="pricing-context fade-in-up">
         Un solo juicio laboral mal manejado en Ecuador: <strong>$3.000–$15.000</strong>.
         Un rebranding por marca sin registrar: <strong>+$15.000</strong>.
         Una multa del SRI: <strong>se multiplica</strong>.
-        Frente a eso, $150 no es un gasto — es el seguro más barato que puedes contratar.
+        Frente a eso, $150 no es un gasto: es el seguro más barato que puedes contratar.
       </p>
       <div class="pricing-card-wrap scale-in" style="transition-delay:0.1s">
         <div class="pricing-card">
@@ -1094,7 +1087,7 @@
             <div class="guarantee-box">
               <div class="guarantee-icon">🛡️</div>
               <div>
-                <div class="guarantee-title">Garantía de 30 días — el riesgo es mío</div>
+                <div class="guarantee-title">Garantía de 30 días: el riesgo es mío</div>
                 <div class="guarantee-text">Entra, aplica los 6 módulos. Si en 30 días sientes que no valió lo que pagaste, te devuelvo el dinero completo.</div>
                 <div class="guarantee-email">Para consultas: info@bernardojijon.com</div>
               </div>
@@ -1111,7 +1104,7 @@
   <section class="faq-section" id="faq">
     <div class="section-inner">
       <div class="faq-header fade-in-up">
-        <span class="section-eyebrow">— Últimas Dudas</span>
+        <span class="section-eyebrow">Últimas Dudas</span>
         <h2 class="section-title">Antes de decidir</h2>
       </div>
       <div class="faq-list fade-in-up" style="transition-delay:0.1s">
@@ -1121,7 +1114,7 @@
             <div class="faq-icon">+</div>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Para emprendedores y dueños de negocios en Ecuador que ya operan o están por comenzar. Si tienes empleados, clientes, una marca o activos que proteger — esto es para ti. No necesitas conocimientos legales previos.</div>
+            <div class="faq-answer-inner">Para emprendedores y dueños de negocios en Ecuador que ya operan o están por comenzar. Si tienes empleados, clientes, una marca o activos que proteger: esto es para ti. No necesitas conocimientos legales previos.</div>
           </div>
         </div>
         <div class="faq-item">
@@ -1130,7 +1123,7 @@
             <div class="faq-icon">+</div>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Puede evitar que fracase por razones legales — que son muchas más de lo que imaginas. Contratos mal firmados, empleados sin IESS, marcas sin registrar, permisos ignorados: cada uno es una bomba de tiempo. Este sistema los detecta y los desactiva antes de que exploten.</div>
+            <div class="faq-answer-inner">Puede evitar que fracase por razones legales, que son muchas más de lo que imaginas. Contratos mal firmados, empleados sin IESS, marcas sin registrar, permisos ignorados: cada uno es una bomba de tiempo. Este sistema los detecta y los desactiva antes de que exploten.</div>
           </div>
         </div>
         <div class="faq-item">
@@ -1170,9 +1163,9 @@
   <section class="final-cta-section">
     <div class="final-cta-bg"></div>
     <div class="final-cta-inner fade-in-up">
-      <span class="section-eyebrow">— Tu Momento es Ahora</span>
+      <span class="section-eyebrow">Tu Momento es Ahora</span>
       <h2>El sistema no avisa<br>cuando decide cobrar.<br>Tú sí puedes prepararte.</h2>
-      <p>Negocio Blindado existe para que eso no te pase a ti. El mapa que nadie te dio cuando emprendiste — disponible hoy.</p>
+      <p>Negocio Blindado existe para que eso no te pase a ti. El mapa que nadie te dio cuando emprendiste, disponible hoy.</p>
       <a href="#precios" class="btn-primary" style="font-size:16px;padding:20px 48px;">
         Blinda mi negocio ahora →
       </a>
