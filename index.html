@@ -159,15 +159,19 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 32px; gap: 16px;
     }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo-icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
+    .nav-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .nav-logo-text-group { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-main {
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold);
+      background: linear-gradient(135deg, #E8C870 0%, #C9A84C 60%, #A8821E 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .nav-logo-text { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .nav-logo-text span { color: var(--gold); }
+    .nav-logo-sub {
+      font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+      border-top: 1px solid rgba(201,168,76,0.35); padding-top: 3px; margin-top: 4px;
+    }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { font-size: 13px; font-weight: 500; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: #fff; }
@@ -685,8 +689,21 @@
   <div class="nav-wrap" id="navWrap">
     <nav>
       <a href="#" class="nav-logo">
-        <div class="nav-logo-icon">🛡</div>
-        <span class="nav-logo-text">Negocio<span>Blindado</span></span>
+        <svg width="34" height="39" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="shieldGold" x1="0" y1="0" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#E8C870"/>
+              <stop offset="50%" stop-color="#C9A84C"/>
+              <stop offset="100%" stop-color="#A8821E"/>
+            </linearGradient>
+          </defs>
+          <path d="M40 5 L73 19 L73 47 C73 64 57 78 40 85 C23 78 7 64 7 47 L7 19 Z" fill="#0E1A38" stroke="url(#shieldGold)" stroke-width="4.5"/>
+          <polyline points="25,46 37,58 57,34" stroke="url(#shieldGold)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <div class="nav-logo-text-group">
+          <span class="nav-logo-main">Negocio Blindado</span>
+          <span class="nav-logo-sub">Bernardo Jijón</span>
+        </div>
       </a>
       <ul class="nav-links">
         <li><a href="#modulos">Módulos</a></li>
@@ -1199,8 +1216,21 @@
       <div class="footer-top">
         <div>
           <div class="footer-logo">
-            <div class="footer-logo-icon">🛡</div>
-            <span class="footer-logo-text">Negocio<span>Blindado</span></span>
+            <svg width="28" height="32" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGoldF" x1="0" y1="0" x2="80" y2="90" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#E8C870"/>
+                  <stop offset="50%" stop-color="#C9A84C"/>
+                  <stop offset="100%" stop-color="#A8821E"/>
+                </linearGradient>
+              </defs>
+              <path d="M40 5 L73 19 L73 47 C73 64 57 78 40 85 C23 78 7 64 7 47 L7 19 Z" fill="#0E1A38" stroke="url(#shieldGoldF)" stroke-width="4.5"/>
+              <polyline points="25,46 37,58 57,34" stroke="url(#shieldGoldF)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <div class="nav-logo-text-group">
+              <span class="nav-logo-main">Negocio Blindado</span>
+              <span class="nav-logo-sub">Bernardo Jijón</span>
+            </div>
           </div>
           <p class="footer-desc">Abogado empresarial ecuatoriano. El sistema que traduce el laberinto legal en pasos concretos para emprendedores en Ecuador.</p>
           <div class="footer-contact">
